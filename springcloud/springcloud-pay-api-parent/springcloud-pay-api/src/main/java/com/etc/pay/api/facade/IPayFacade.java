@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 支付接口
+ * @author 刘宇祥
+ * */
 @Api("支付")
 @RequestMapping("/pay")
 public interface IPayFacade {
