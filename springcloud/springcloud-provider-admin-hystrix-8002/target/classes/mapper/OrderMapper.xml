@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.OrderMapper">
+
+    <select id="getOrderList" resultType="Orders">
+        select masterOrders.*,address.receiver_name as receiverName,
+               address.receiver_address as receiverAddress,
+        address.receiver_phone as receiverPhone
+        from masterOrders left join user on masterOrders.user_id=user.uid left join address  on user.uid=address.user_id
+        <where>
+            <if test="orderNum!=null and orderNum!=''">
+                 orderNum like concat("%",#{orderNum},"%")
+            </if>
+        </where>
+        masterOrder by oid asc
+    </select>
+<!--    &#45;&#45;         EXEC (select G.*,T.type_name as TypeName from goods G,type T where g.type_id=t.tid-->
+<!--    &#45;&#45;-->
+<!--    &#45;&#45;         masterOrder by gid asc)-->
+<!--根据id查询商品类型名-->
+    <select id="queryGoodsById" resultType="Goods">
+        select G.*,T.type_name as TypeName from goods G,type T
+        where g.type_id=t.tid
+        AND G.gid=#{gid}
+    </select>
+<!--修改商品类型名-->
+    <update id="modifyGoods" parameterType="Goods">
+        update goods set type_id=#{type_id},name=#{name},price=#{price},details=#{details},stock=#{stock},image=#{image}
+        where gid=#{gid}
+    </update>
+<!--添加商品类型-->
+    <insert id="addGoods">
+        insert into goods(gid,type_id,name,price,details,stock,image) values(null,#{type_id},#{name},#{price},#{details},#{stock},#{image})
+    </insert>
+
+<!--    删除商品-->
+    <delete id="deleteGoods">
+        delete from goods where gid=#{gid}
+    </delete>
+
+    <!--    批量删除商品类型-->
+<!--    <delete id="delTypeAllById" parameterType="java.util.List">-->
+<!--        <foreach collection="list" item="item" separator=",">-->
+<!--            delete from type where tid=#{item.id}-->
+<!--        </foreach>-->
+
+<!--    </delete>-->
+<!--  根据ID查询订单  -->
+    <select id="getOrderById" resultType="Orders">
+        select * from masterOrders where oid=#{oid}
+    </select>
+</mapper>

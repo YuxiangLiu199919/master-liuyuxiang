@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.OrdersMapper">
+    <!--    根据用户id查询orders-->
+    <select id="queryOrders" resultType="com.etc.springcloud.pojo.Orders">
+        select * from masterOrders where user_id=#{uid} masterOrder by oid desc
+    </select>
+<!--    获取订单id-->
+    <select id="getOrdersId" resultType="Integer">
+        select oid from masterOrders where orderNum=#{orderNum}
+    </select>
+<!--    查询订单编号-->
+    <select id="getOrderNum" resultType="String">
+        select orderNum from masterOrders where oid=#{oid}
+    </select>
+<!--下单-->
+    <insert id="addOrder" parameterType="Orders">
+        insert into masterOrders values(null,#{uid},null,now(),#{quantity},#{price_total},
+                                  0,#{orderNum})
+    </insert>
+    <!--取消订单-->
+    <delete id="deleteGoodsCart">
+        delete from masterOrders where user_id=#{uid}
+    </delete>
+<!--更新订单配送地址id-->
+    <update id="updateOrder" >
+        update masterOrders set address_id=#{aid} where oid=#{oid} and user_id=#{uid}
+    </update>
+<!--更新支付状态-->
+    <update id="updateOrderPay" >
+        update masterOrders set isPay=1 where orderNum=#{orderNum}
+    </update>
+
+</mapper>

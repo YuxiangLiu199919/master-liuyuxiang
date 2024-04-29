@@ -1,0 +1,6 @@
+com\etc\springcloud\service\UserService.class
+com\etc\springcloud\controller\UserController.class
+com\etc\springcloud\UserProviderHystrix_8001.class
+com\etc\springcloud\mapper\UserMapper.class
+com\etc\springcloud\service\UserServiceImpl.class
+com\etc\springcloud\CorsConfig.class

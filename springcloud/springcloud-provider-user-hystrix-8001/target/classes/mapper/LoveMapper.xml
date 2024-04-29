@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.LoveMapper">
+
+    <insert id="addLove" parameterType="Love">
+        insert into love(lid,l_gid,l_uid) values(null,#{gid},#{uid})
+    </insert>
+<!--查用户的收藏商品-->
+    <select id="queryLove" resultType="Love">
+        select l.*,g.name as loveGoodsName,g.price as loveGoodsPrice,g.image as loveGoodsImage,
+               g.discount as loveGoodsDiscount
+        from love l,goods g where l.l_gid=g.gid and l.l_uid=#{uid}
+    </select>
+    <!--查用户已经收藏商品-->
+    <select id="getLoveById" resultType="int">
+        select count(1) as count from love where l_gid=#{gid}
+    </select>
+    <!--    删除商品-->
+    <delete id="deleteLove">
+        delete from love where l_gid=#{gid}
+    </delete>
+
+
+</mapper>

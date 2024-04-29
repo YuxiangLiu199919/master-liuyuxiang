@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.TypeMapper">
+    <select id="queryTypeList" resultType="Type">
+        select * from type masterOrder by tid desc
+    </select>
+
+    <select id="getTypeList" resultType="Type">
+        select * from type
+        <where>
+            <if test="type_name!=null and type_name!=''">
+                AND type_name like concat("%",#{type_name},"%")
+            </if>
+        </where>
+        masterOrder by tid desc
+    </select>
+<!--根据id查询商品类型名-->
+    <select id="queryTypeById" resultType="Type">
+        select * from type where tid=#{tid}
+    </select>
+<!--修改商品类型名-->
+    <update id="modifyType" parameterType="Type">
+        update type set type_name=#{type_name} where tid=#{tid}
+    </update>
+<!--添加商品类型-->
+    <insert id="addType">
+        insert into type(tid,type_name) values(null,#{type_name})
+    </insert>
+
+<!--    删除商品类型-->
+    <delete id="deleteType">
+        delete from type where tid=#{tid}
+    </delete>
+
+    <!--    批量删除商品类型-->
+    <delete id="delTypeAllById" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=",">
+            delete from type where tid=#{item.id}
+        </foreach>
+
+    </delete>
+
+</mapper>

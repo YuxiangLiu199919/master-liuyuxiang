@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.UserMapper">
+
+    <select id="userLogin" resultType="User">
+        select * from user where userEmail=#{userEmail} and userPassword=#{userPassword}
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        select * from user where uid=#{uid}
+    </select>
+
+    <!--修改user-->
+    <update id="modifyUser" parameterType="User">
+        update user set userName=#{userName}, userEmail=#{userEmail}, userPhone=#{userPhone},userPassword=#{userPassword},
+                         sex=#{sex}, userAddress=#{userAddress}
+        where uid=#{uid}
+    </update>
+
+    <insert id="userSignUp">
+        insert into user(uid,userName,userPhone,userPassword,sex,userEmail,userAddress)
+        values(null,#{userName},#{userPhone},#{userPassword},null,#{userEmail},null)
+    </insert>
+
+
+</mapper>

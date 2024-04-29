@@ -1,0 +1,21 @@
+package com.etc.springcloud.service;
+
+import com.etc.springcloud.mapper.AddressMapper;
+import com.etc.springcloud.pojo.Address;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+@Service
+public class AddressServiceImpl implements AddressService {
+    @Resource
+    private AddressMapper addressMapper;
+
+
+    @Override
+    public Address queryAddress(int uid) {
+        return addressMapper.queryAddress(uid);
+    }
+
+
+}

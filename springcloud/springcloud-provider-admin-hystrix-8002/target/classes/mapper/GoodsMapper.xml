@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.GoodsMapper">
+
+    <select id="getGoodsList" resultType="Goods">
+        select G.*,T.type_name as TypeName from goods G,type T
+        <where>
+            g.type_id=t.tid
+            <if test="name!=null and name!=''">
+                AND name like concat("%",#{name},"%")
+            </if>
+        </where>
+        masterOrder by gid desc
+    </select>
+<!--    &#45;&#45;         EXEC (select G.*,T.type_name as TypeName from goods G,type T where g.type_id=t.tid-->
+<!--    &#45;&#45;-->
+<!--    &#45;&#45;         masterOrder by gid asc)-->
+<!--根据id查询商品名-->
+    <select id="queryGoodsById" resultType="Goods">
+        select G.*,T.type_name as TypeName from goods G,type T
+        where g.type_id=t.tid
+        AND G.gid=#{gid}
+    </select>
+<!--修改商品名-->
+    <update id="modifyGoods" parameterType="Goods">
+        update goods set type_id=#{type_id},name=#{name},price=#{price},discount=#{discount},details=#{details},stock=#{stock},image=#{image}
+        where gid=#{gid}
+    </update>
+<!--添加商品类型-->
+    <insert id="addGoods">
+        insert into goods(gid,type_id,name,price,discount,details,stock,image) values(null,#{type_id},#{name},#{price},#{discount},#{details},#{stock},#{image})
+    </insert>
+
+<!--    删除商品-->
+    <delete id="deleteGoods">
+        delete from goods where gid=#{gid}
+    </delete>
+
+    <!--    批量删除商品类型-->
+<!--    <delete id="delTypeAllById" parameterType="java.util.List">-->
+<!--        <foreach collection="list" item="item" separator=",">-->
+<!--            delete from type where tid=#{item.id}-->
+<!--        </foreach>-->
+
+<!--    </delete>-->
+
+</mapper>

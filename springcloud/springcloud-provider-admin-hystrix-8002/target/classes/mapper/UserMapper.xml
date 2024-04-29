@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.UserMapper">
+    <insert id="addUser" parameterType="User">
+        insert into user(uid,userName,sex,userPhone,userEmail,userPassword,userAddress) values (null,#{userName},#{sex},#{userPhone},#{userEmail},#{userPassword},#{userAddress})
+    </insert>
+
+    <select id="getUserList" resultType="User">
+        select * from user
+        <where>
+            <if test="userName!=null and userName!=''">
+                AND userName like concat("%",#{userName},"%")
+            </if>
+
+        </where>
+        masterOrder by uid desc
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        select * from user where uid=#{uid}
+    </select>
+
+    <!--修改user-->
+    <update id="modifyUser" parameterType="User">
+        update user set userName=#{userName}, userEmail=#{userEmail}, userPhone=#{userPhone},userPassword=#{userPassword},
+                         sex=#{sex}, userAddress=#{userAddress}
+        where uid=#{uid}
+    </update>
+<!--   deleteUser -->
+
+    <delete id="deleteUserById">
+        delete from user where uid=#{uid}
+    </delete>
+
+</mapper>

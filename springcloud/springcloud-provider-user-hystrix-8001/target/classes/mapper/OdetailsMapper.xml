@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.OdetailsMapper">
+    <select id="queryOdetails" resultType="Odetails">
+        select * from odetails where doid=#{oid}
+    </select>
+
+
+<!--增加订单详情-->
+    <insert id="addOdetails" parameterType="Odetails">
+        insert into odetails values(null,#{doid},#{dName},#{dPrice},#{dnum})
+    </insert>
+
+    <!--查询订单详情-->
+    <delete id="deleteGoodsCart">
+        delete from masterOrders where user_id=#{uid}
+    </delete>
+
+
+</mapper>

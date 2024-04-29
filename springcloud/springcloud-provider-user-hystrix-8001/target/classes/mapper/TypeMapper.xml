@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.etc.springcloud.mapper.TypeMapper">
+
+    <select id="queryType" resultType="Type">
+        select * from type
+    </select>
+
+    <select id="querySpecialGoods" resultType="Goods">
+        select G.*,T.type_name as typeName from goods G,type T
+        where G.type_id=T.tid and T.type_name='特价商品'
+    </select>
+
+    <select id="getGoodsById" resultType="Goods">
+        select * from goods where gid=#{gid}
+    </select>
+
+
+</mapper>
