@@ -20,19 +20,23 @@ import java.util.List;
 @RequestMapping("/order")
 public interface IOrderFacade {
 
+    /**
+     * skuId查询订单列表
+     * @RequestParam skuId
+     * */
     @PostMapping(value = "/queryOrderBySku")
     List<MasterOrderDTO> queryOrderBySku(@RequestParam("skuId") String skuId) throws Exception;
 
     /**
      * 下单
-     * @RequestBody masterOrderDTO
+     * @RequestBody PlaseOrderDTO
      * */
     @PostMapping(value = "/placeOrder")
     ReturnResult placeOrder(@RequestBody PlaseOrderDTO plaseOrderDTO) throws Exception;
 
     /**
      * 支付
-     * @RequestBody masterOrderDTO
+     * @RequestBody PayOrderDTO
      * */
     @PostMapping(value = "/payOrder")
     ReturnResult payOrder(@RequestBody PayOrderDTO payOrderDTO) throws Exception;
