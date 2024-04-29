@@ -19,10 +19,15 @@
     </sql>
 
 
-    <select id="queryOrder" resultType="com.etc.order.repository.entity.MasterOrder">
+    <select id="queryOrderBySku" resultType="com.etc.order.repository.entity.MasterOrder">
         select
         <include refid="Base_Column_List"/>
-        from master_order where 1=1 limit 100;
+        from master_order
+        <where>
+            <if test="skuId !=null and skuId != '' ">
+                sku_id=#{skuId}
+            </if>
+        </where>>
     </select>
 
     <insert id="createOrder" parameterType="com.etc.order.repository.entity.MasterOrder">
@@ -35,4 +40,22 @@
         update master_order set order_status=#{statusCd}
         where order_id=#{orderId} limit 1;
     </update>
+
+    <select id="queryByOrderId" resultType="com.etc.order.repository.entity.MasterOrder">
+        select
+        <include refid="Base_Column_List"/>
+        from master_order
+        <where>
+            <if test="orderId !=null and orderId != '' ">
+                order_id=#{orderId}
+            </if>
+            <if test="buyerId !=null and buyerId != '' ">
+                buyer_id=#{buyerId}
+            </if>
+            <if test="orderStatus !=null and orderStatus != '' ">
+                order_status=#{orderStatus}
+            </if>
+        </where>>
+        limit 1;
+    </select>
 </mapper>

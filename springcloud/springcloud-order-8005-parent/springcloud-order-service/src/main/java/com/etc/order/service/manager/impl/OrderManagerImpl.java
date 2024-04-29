@@ -8,6 +8,7 @@ import com.etc.order.service.bo.PayOrderBo;
 import com.etc.order.service.bo.PlaseOrderBo;
 import com.etc.order.service.bo.ReturnResultBo;
 import com.etc.order.service.emuns.MasterOrderEmuns;
+import com.etc.order.service.listener.event.PayResultEvent;
 import com.etc.order.service.manager.InventoryManager;
 import com.etc.order.service.manager.OrderManager;
 import com.etc.order.service.returnResult.PayResult;
@@ -55,8 +56,11 @@ public class OrderManagerImpl implements OrderManager {
     private ApplicationEventPublisher applicationEventPublisher;
 
     @Override
-    public List<MasterOrder> queryOrder() {
-        return orderDao.queryOrder();
+    public List<MasterOrder> queryOrderBySku(String skuId) {
+        if(!Optional.ofNullable(skuId).isPresent()){
+            throw new RuntimeException("入参校验失败！");
+        }
+        return orderDao.queryOrderBySku(skuId);
     }
 
 
@@ -160,11 +164,18 @@ public class OrderManagerImpl implements OrderManager {
     public ReturnResultBo payOrder(PayOrderBo payOrderBo) throws Exception {
         try{
             this.verifyPayOrder(payOrderBo);
-            //调用支付接口
-            Boolean flag=payClient.pay(payOrderBo.getTotalPrice(),payOrderBo.getOrderId());
-            //支付策略回调,要求实时性，不采用异步功能
-            return payContext.executePayment(payOrderBo,flag);
-//            applicationEventPublisher.publishEvent(new PayResultEvent(payOrderBo,flag));
+            //校验订单状态，避免重复支付
+            MasterOrder masterOrder=orderDao.queryByOrderId(payOrderBo.getOrderId(), payOrderBo.getBuyerId(), MasterOrderEmuns.ORDER_STATUS_PUB2.getValue());
+            if(Optional.ofNullable(masterOrder).isPresent()){
+                return ReturnResultBo.success("订单已经支付成功，请勿重复发起支付，避免误扣金额！",payOrderBo);
+            }
+            Boolean flag=payClient.pay(payOrderBo.getTotalPrice(),payOrderBo.getOrderId());//调用支付接口
+            //支付策略回调刷新订单状态，采用异步处理
+            applicationEventPublisher.publishEvent(new PayResultEvent(payOrderBo,flag));
+            if(Boolean.FALSE.equals(flag)){
+                return ReturnResultBo.fail("支付接口异常，支付接口返回状态："+flag,payOrderBo);
+            }
+            return ReturnResultBo.success("支付成功",payOrderBo);
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return ReturnResultBo.fail("支付接口异常"+e.getMessage(),payOrderBo);

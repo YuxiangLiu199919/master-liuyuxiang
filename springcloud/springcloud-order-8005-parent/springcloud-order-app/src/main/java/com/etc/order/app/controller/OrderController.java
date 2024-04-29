@@ -26,8 +26,8 @@ public class OrderController implements IOrderFacade {
     private OrderDTOConvert orderDTOConvert;
 
     @Override
-    public List<MasterOrderDTO> queryOrder() {
-        return orderDTOConvert.toDTOList(orderManager.queryOrder());
+    public List<MasterOrderDTO> queryOrderBySku(String skuId) {
+        return orderDTOConvert.toDTOList(orderManager.queryOrderBySku(skuId));
     }
 
     @Override

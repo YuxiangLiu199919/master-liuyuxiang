@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface OrderManager {
 
-    List<MasterOrder> queryOrder();
+    List<MasterOrder> queryOrderBySku(String skuId) ;
 
     /**
      * 创建订单

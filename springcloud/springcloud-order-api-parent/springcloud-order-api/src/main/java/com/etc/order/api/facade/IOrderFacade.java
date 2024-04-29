@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,8 +16,8 @@ import java.util.List;
 @RequestMapping("/order")
 public interface IOrderFacade {
 
-    @PostMapping(value = "/queryOrder")
-    List<MasterOrderDTO> queryOrder() throws Exception;
+    @PostMapping(value = "/queryOrderBySku")
+    List<MasterOrderDTO> queryOrderBySku(@RequestParam("skuId") String skuId) throws Exception;
 
     /**
      * 下单

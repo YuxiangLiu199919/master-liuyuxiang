@@ -12,8 +12,8 @@ import java.util.List;
 @Service
 public class OrderFallBack implements OrderClient {
     @Override
-    public List<MasterOrderDTO> queryOrder() throws Exception {
-        throw new Exception("queryOrder方法异常");
+    public List<MasterOrderDTO> queryOrderBySku(String skuId) throws Exception {
+        throw new Exception("queryOrderBySku方法异常");
     }
 
     @Override

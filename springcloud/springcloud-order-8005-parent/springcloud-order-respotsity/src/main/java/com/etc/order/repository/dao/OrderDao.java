@@ -6,7 +6,9 @@ import java.util.List;
 
 public interface OrderDao {
 
-    List<MasterOrder> queryOrder();
+    List<MasterOrder> queryOrderBySku(String skuId);
+
+    MasterOrder queryByOrderId(String orderId,String buyerId,String orderStatus);
 
     Integer createOrder(MasterOrder masterOrder);
 
