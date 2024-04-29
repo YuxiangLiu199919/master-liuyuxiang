@@ -31,7 +31,7 @@ public interface IOrderFacade {
     ReturnResult placeOrder(@RequestBody PlaseOrderDTO plaseOrderDTO) throws Exception;
 
     /**
-     * 下单
+     * 支付
      * @RequestBody masterOrderDTO
      * */
     @PostMapping(value = "/payOrder")
