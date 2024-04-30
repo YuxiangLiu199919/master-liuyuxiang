@@ -1,5 +1,8 @@
 package com.etc.order.service.factory;
 
+import com.etc.order.service.bo.PayOrderBo;
+import com.etc.order.service.bo.ReturnResultBo;
+
 /**
  * @author Yuxiang Liu
  * 支付策略上下文
@@ -7,8 +10,8 @@ package com.etc.order.service.factory;
 public interface PayService {
 
 
-    boolean doAction();
+    ReturnResultBo doAction(PayOrderBo payOrderBo);
 
 
-    boolean isAction();
+    boolean isAction(Boolean flag);
 }

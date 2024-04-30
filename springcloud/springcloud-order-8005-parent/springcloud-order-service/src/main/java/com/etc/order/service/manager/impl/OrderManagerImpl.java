@@ -15,7 +15,6 @@ import com.etc.order.service.listener.event.PayResultEvent;
 import com.etc.order.service.manager.InventoryManager;
 import com.etc.order.service.manager.OrderManager;
 import com.etc.order.service.returnResult.PayResult;
-import com.etc.order.service.strategy.PayContext;
 import com.etc.order.service.utils.RedisUtil;
 import com.etc.order.service.utils.UUIDUtils;
 import com.etc.pay.client.PayClient;
@@ -49,9 +48,6 @@ public class OrderManagerImpl implements OrderManager {
 
     @Autowired
     private RedisUtil redisUtil;
-
-    @Autowired
-    private PayContext payContext;
 
     @Autowired
     private PayClient payClient;

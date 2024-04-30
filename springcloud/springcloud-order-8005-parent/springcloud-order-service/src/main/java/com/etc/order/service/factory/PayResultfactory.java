@@ -1,9 +1,18 @@
 package com.etc.order.service.factory;
 
+import com.etc.order.service.bo.PayOrderBo;
+import com.etc.order.service.bo.ReturnResultBo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+/**
+ * 简单工厂
+ * @author 刘宇祥
+ * */
+@Component
 public class PayResultfactory {
 
     private static List<PayService> payServiceList;
@@ -13,13 +22,13 @@ public class PayResultfactory {
         PayResultfactory.payServiceList = payServiceList;
     }
 
-    public void doPayResult(){
-        payServiceList.forEach(s->{
-            if(s.isAction()){
-                s.doAction();
+    public static ReturnResultBo doPayResult(PayOrderBo payOrderBo, boolean isSuccess){
+        for(PayService s : payServiceList){
+            if(s.isAction(isSuccess)){
+                return s.doAction(payOrderBo);
             }
-        });
-
+        }
+        return ReturnResultBo.success("无法更新订单状态",payOrderBo);
     }
 
 }

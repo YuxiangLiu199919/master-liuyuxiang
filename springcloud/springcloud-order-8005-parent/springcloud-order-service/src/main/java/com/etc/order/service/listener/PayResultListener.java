@@ -4,6 +4,7 @@ package com.etc.order.service.listener;
 import com.alibaba.druid.util.StringUtils;
 import com.etc.order.service.bo.ReturnResultBo;
 import com.etc.order.service.constants.Constant;
+import com.etc.order.service.factory.PayResultfactory;
 import com.etc.order.service.listener.event.PayResultEvent;
 import com.etc.order.service.strategy.PayContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,10 @@ public class PayResultListener {
             return;
         }
         try {
+            //策略模式
             ReturnResultBo returnResultBo=payContext.executePayment(payResultEvent.getPayOrderBo(),payResultEvent.getFlag());
+            //简单工厂模式
+            //PayResultfactory.doPayResult(payResultEvent.getPayOrderBo(),payResultEvent.getFlag());
             if(StringUtils.equals("900",returnResultBo.getCode())){
                 System.out.println("订单状态更新失败，记录日志");
             }
