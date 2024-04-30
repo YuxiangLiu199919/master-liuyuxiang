@@ -55,15 +55,15 @@
         from master_order
         <where>
             <if test="orderId !=null and orderId != '' ">
-                order_id=#{orderId}
+                and order_id=#{orderId}
             </if>
             <if test="buyerId !=null and buyerId != '' ">
-                buyer_id=#{buyerId}
+                and buyer_id=#{buyerId}
             </if>
             <if test="orderStatus !=null and orderStatus != '' ">
-                order_status=#{orderStatus}
+                and order_status=#{orderStatus}
             </if>
-        </where>>
+        </where>
         limit 1;
     </select>
 </mapper>

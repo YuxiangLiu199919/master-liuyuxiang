@@ -182,7 +182,7 @@ public class OrderManagerImpl implements OrderManager {
             return ReturnResultBo.success("支付成功",payOrderBo);
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            return ReturnResultBo.fail("支付接口异常"+e.getMessage(),payOrderBo);
+            return ReturnResultBo.fail("支付接口异常："+e.getMessage(),payOrderBo);
         }
     }
 
