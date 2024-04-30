@@ -1,0 +1,12 @@
+
+g	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(ç´ûÿÿÿÿ8¶Õäò1
+g	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(¨ğÍĞúÿÿÿÿ8·Õäò1
+g	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(Î‰Åšúÿÿÿÿ8·Õäò1
+Q
+java:S3740)"/Provide the parametrized type for this generic.(¨ğÍĞúÿÿÿÿ8·Õäò1
+Q
+java:S37400"/Provide the parametrized type for this generic.(Î‰Åšúÿÿÿÿ8·Õäò1
+c
+java:S1128"ARemove this unused import 'com.etc.order.api.dto.MasterOrderDTO'.(Ñ®êÿÿÿÿÿ8¿ñ•æò1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¿ñ•æò1

@@ -1,0 +1,9 @@
+
+[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(‚ÒµË
+[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(æ¿ğÕ
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ğÿäøøÿÿÿÿ8Âó›äò1
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(œãõµ
+c
+java:S1128"ARemove this unused import 'com.etc.order.api.dto.MasterOrderDTO'.(Ñ®êÿÿÿÿÿ8É¼æò1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8É¼æò1

@@ -1,0 +1,11 @@
+
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¥íÒÿÿÿÿÿ8ˆåò1
+‚
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "pageInfo".(¥íÒÿÿÿÿÿ8ª¦”åò1
+q
+java:S3252"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".( ÊÜÄúÿÿÿÿ8’åò1
+a
+java:S1128"?Remove this unused import 'cn.hutool.core.collection.ListUtil'.(š™úûÿÿÿÿ8Ë—õæò1
+T
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8Ë—õæò1

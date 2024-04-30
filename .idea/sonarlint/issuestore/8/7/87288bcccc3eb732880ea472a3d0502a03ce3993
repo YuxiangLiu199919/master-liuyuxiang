@@ -1,0 +1,35 @@
+
+g	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(ñãªüÿÿÿÿ8´Á®æò1
+g	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(î§œ¯üÿÿÿÿ8´Á®æò1
+b	java:S112q"FDefine and throw a dedicated exception instead of using a generic one.(ÑÜà—8´Á®æò1
+b	java:S112t"FDefine and throw a dedicated exception instead of using a generic one.(³ùâ8´Á®æò1
+b	java:S112w"FDefine and throw a dedicated exception instead of using a generic one.(Æ£¾Â8µÁ®æò1
+g	java:S112z"FDefine and throw a dedicated exception instead of using a generic one.(Ãâˆ´şÿÿÿÿ8µÁ®æò1
+g	java:S112}"FDefine and throw a dedicated exception instead of using a generic one.(òúºàùÿÿÿÿ8µÁ®æò1
+h	java:S112€"FDefine and throw a dedicated exception instead of using a generic one.(“«‡·ÿÿÿÿÿ8µÁ®æò1
+h	java:S112ƒ"FDefine and throw a dedicated exception instead of using a generic one.(Úô‘™úÿÿÿÿ8µÁ®æò1
+c	java:S112Ç"FDefine and throw a dedicated exception instead of using a generic one.(ÑÜà—8µÁ®æò1
+c	java:S112Ê"FDefine and throw a dedicated exception instead of using a generic one.(¸†–Œ8µÁ®æò1
+c	java:S112Í"FDefine and throw a dedicated exception instead of using a generic one.(ôû–‡8µÁ®æò1
+c	java:S112Ğ"FDefine and throw a dedicated exception instead of using a generic one.(Æ£¾Â8µÁ®æò1
+h	java:S112Ó"FDefine and throw a dedicated exception instead of using a generic one.(Ãâˆ´şÿÿÿÿ8µÁ®æò1
+l
+java:S2259["JA "NullPointerException" could be thrown; "plaseOrderBo" is nullable here.(àïÕÔÿÿÿÿÿ8ÏÁ®æò1
+_
+java:S6813*"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S6813-"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S6813/"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S68132"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S68135"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S68138"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S6813;"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+_
+java:S6813>"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ŞÁ®æò1
