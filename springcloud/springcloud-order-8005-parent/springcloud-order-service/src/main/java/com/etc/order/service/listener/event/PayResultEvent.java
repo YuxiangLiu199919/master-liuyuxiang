@@ -13,7 +13,12 @@ public class PayResultEvent {
 
     private PayOrderBo payOrderBo;
 
-    public PayResultEvent(PayOrderBo payOrderBo, Boolean flag) {
+    public PayResultEvent() {
+    }
+
+    public PayResultEvent(Boolean flag, PayOrderBo payOrderBo) {
+        this.flag = flag;
+        this.payOrderBo = payOrderBo;
     }
 
     public Boolean getFlag() {

@@ -175,7 +175,7 @@ public class OrderManagerImpl implements OrderManager {
             }
             Boolean flag=payClient.pay(payOrderBo.getTotalPrice(),payOrderBo.getOrderId());//调用支付接口
             //支付策略回调刷新订单状态，采用异步处理
-            applicationEventPublisher.publishEvent(new PayResultEvent(payOrderBo,flag));
+            applicationEventPublisher.publishEvent(new PayResultEvent(flag,payOrderBo));
             if(Boolean.FALSE.equals(flag)){
                 return ReturnResultBo.fail("支付接口异常，支付接口返回状态："+flag,payOrderBo);
             }

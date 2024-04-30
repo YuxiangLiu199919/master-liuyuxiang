@@ -30,4 +30,4 @@ java:S68137"BRemove this field injection and use constructor injection instead.
 _
 java:S6813:"BRemove this field injection and use constructor injection instead.(êæÄŞ8ĞÁ®æò1
 M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ŞÁ®æò1
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8·ö…èò1
