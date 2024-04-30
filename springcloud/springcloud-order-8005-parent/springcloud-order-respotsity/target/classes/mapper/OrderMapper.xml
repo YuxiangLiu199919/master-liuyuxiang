@@ -33,7 +33,7 @@
                 and a.sku_id=#{skuId}
             </if>
             <if test="buyerId !=null and buyerId != '' ">
-                and a.buyer_id=#{skuId}
+                and a.buyer_id=#{buyerId}
             </if>
         </where>
     </select>
