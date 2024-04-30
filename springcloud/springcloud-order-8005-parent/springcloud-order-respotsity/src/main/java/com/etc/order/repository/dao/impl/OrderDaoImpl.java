@@ -5,6 +5,9 @@ import com.alibaba.druid.util.StringUtils;
 import com.etc.order.repository.dao.OrderDao;
 import com.etc.order.repository.entity.MasterOrder;
 import com.etc.order.repository.mapper.OrderMapper;
+import com.etc.order.repository.vo.OrderVo;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
@@ -19,11 +22,14 @@ public class OrderDaoImpl implements OrderDao {
 
 
     @Override
-    public List<MasterOrder> queryOrderBySku(String skuId) {
-        if(StringUtils.isEmpty(skuId)){
-            return ListUtil.empty();
+    public PageInfo<OrderVo> queryOrderBySku(String skuId,String buyerId, Integer pageNo, Integer pageSize) {
+        if(StringUtils.isEmpty(skuId) && StringUtils.isEmpty(buyerId)){
+            return new PageInfo<>();
         }
-        return orderMapper.queryOrderBySku(skuId);
+        PageHelper.startPage(pageNo,pageSize);
+        List<OrderVo> orderVos=orderMapper.queryOrderBySku(skuId,buyerId);
+        PageInfo<OrderVo> pageInfo=new PageInfo<OrderVo>(orderVos);
+        return pageInfo;
     }
 
     @Override

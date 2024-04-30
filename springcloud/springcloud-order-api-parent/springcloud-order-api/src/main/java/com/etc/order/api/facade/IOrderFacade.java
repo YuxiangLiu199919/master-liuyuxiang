@@ -2,9 +2,12 @@ package com.etc.order.api.facade;
 
 import com.etc.order.api.Result.ReturnResult;
 import com.etc.order.api.dto.MasterOrderDTO;
+import com.etc.order.api.dto.OrderDTO;
 import com.etc.order.api.dto.PayOrderDTO;
 import com.etc.order.api.dto.PlaseOrderDTO;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +27,11 @@ public interface IOrderFacade {
      * skuId查询订单列表
      * @RequestParam skuId
      * */
-    @PostMapping(value = "/queryOrderBySku")
-    List<MasterOrderDTO> queryOrderBySku(@RequestParam("skuId") String skuId) throws Exception;
+    @GetMapping(value = "/queryOrderBySku")
+    PageInfo<OrderDTO> queryOrderBySku(@RequestParam(value = "skuId",required = false) String skuId,
+                                       @RequestParam(value = "buyerId",required = false) String buyerId,
+                                       @RequestParam(value = "pageNo",defaultValue = "1",required = false) Integer pageNo,
+                                       @RequestParam(value = "pageSize",defaultValue = "10",required = false) Integer pageSize) throws Exception;
 
     /**
      * 下单

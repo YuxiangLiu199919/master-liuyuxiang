@@ -1,17 +1,16 @@
 package com.etc.order.app.controller;
 
 import com.etc.order.api.Result.ReturnResult;
-import com.etc.order.api.dto.MasterOrderDTO;
+import com.etc.order.api.dto.OrderDTO;
 import com.etc.order.api.dto.PayOrderDTO;
 import com.etc.order.api.dto.PlaseOrderDTO;
 import com.etc.order.api.facade.IOrderFacade;
 import com.etc.order.app.convert.OrderDTOConvert;
 import com.etc.order.service.bo.ReturnResultBo;
 import com.etc.order.service.manager.OrderManager;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * 订单Controller
@@ -25,9 +24,10 @@ public class OrderController implements IOrderFacade {
     @Autowired
     private OrderDTOConvert orderDTOConvert;
 
+
     @Override
-    public List<MasterOrderDTO> queryOrderBySku(String skuId) {
-        return orderDTOConvert.toDTOList(orderManager.queryOrderBySku(skuId));
+    public PageInfo<OrderDTO> queryOrderBySku(String skuId,String buyerId, Integer pageNo, Integer pageSize) throws Exception {
+        return orderDTOConvert.toPageInfoOrderDto(orderManager.queryOrderBySku(skuId,buyerId,pageNo,pageSize));
     }
 
     @Override

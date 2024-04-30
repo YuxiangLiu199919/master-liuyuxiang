@@ -4,9 +4,12 @@ import com.etc.order.repository.dao.OrderDao;
 import com.etc.order.repository.dao.OrderItemDao;
 import com.etc.order.repository.entity.MasterOrder;
 import com.etc.order.repository.entity.OrderItem;
+import com.etc.order.repository.vo.OrderVo;
+import com.etc.order.service.bo.OrderBo;
 import com.etc.order.service.bo.PayOrderBo;
 import com.etc.order.service.bo.PlaseOrderBo;
 import com.etc.order.service.bo.ReturnResultBo;
+import com.etc.order.service.convert.OrderBoConvert;
 import com.etc.order.service.emuns.MasterOrderEmuns;
 import com.etc.order.service.listener.event.PayResultEvent;
 import com.etc.order.service.manager.InventoryManager;
@@ -16,6 +19,7 @@ import com.etc.order.service.strategy.PayContext;
 import com.etc.order.service.utils.RedisUtil;
 import com.etc.order.service.utils.UUIDUtils;
 import com.etc.pay.client.PayClient;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -55,12 +59,16 @@ public class OrderManagerImpl implements OrderManager {
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
 
+    @Autowired
+    private OrderBoConvert orderBoConvert;
+
     @Override
-    public List<MasterOrder> queryOrderBySku(String skuId) {
-        if(!Optional.ofNullable(skuId).isPresent()){
+    public PageInfo<OrderBo> queryOrderBySku(String skuId,String buyerId, Integer pageNo, Integer pageSize) {
+        if(!Optional.ofNullable(skuId).isPresent() && !Optional.ofNullable(buyerId).isPresent()){
             throw new RuntimeException("入参校验失败！");
         }
-        return orderDao.queryOrderBySku(skuId);
+        PageInfo<OrderVo> pageInfo= orderDao.queryOrderBySku(skuId,buyerId,pageNo,pageSize);
+        return orderBoConvert.toPageInfoOrderBo(pageInfo);
     }
 
 

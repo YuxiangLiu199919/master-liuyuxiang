@@ -9,6 +9,7 @@ import com.etc.order.service.strategy.PayContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
@@ -20,7 +21,10 @@ public class PayResultListener {
     @Autowired
     private PayContext payContext;
 
-    @TransactionalEventListener
+    /**
+     * 在主线程事务提交后执行以下逻辑，避免支付阻塞
+     * */
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     @Async(Constant.SYNC_EXECUTOR)
     public void doPayResult(PayResultEvent payResultEvent){
         if(Boolean.FALSE.equals(verify(payResultEvent))){

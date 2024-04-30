@@ -2,13 +2,16 @@ package com.etc.order.app.convert.impl;
 
 import com.etc.order.api.Result.ReturnResult;
 import com.etc.order.api.dto.MasterOrderDTO;
+import com.etc.order.api.dto.OrderDTO;
 import com.etc.order.api.dto.PayOrderDTO;
 import com.etc.order.api.dto.PlaseOrderDTO;
 import com.etc.order.app.convert.OrderDTOConvert;
 import com.etc.order.repository.entity.MasterOrder;
+import com.etc.order.service.bo.OrderBo;
 import com.etc.order.service.bo.PayOrderBo;
 import com.etc.order.service.bo.PlaseOrderBo;
 import com.etc.order.service.bo.ReturnResultBo;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,6 +30,58 @@ public class OrderDTOConvertImpl implements OrderDTOConvert {
         }
 
         return list;
+    }
+
+    @Override
+    public PageInfo<OrderDTO> toPageInfoOrderDto(PageInfo<OrderBo> pageInfo) {
+        if(pageInfo == null ){
+            return null;
+        }
+        PageInfo<OrderDTO> pageInfo1 = new PageInfo<OrderDTO>();
+
+        pageInfo1.setPageNum( pageInfo.getPageNum() );
+        pageInfo1.setList( toOrderDTOList( pageInfo.getList() ) );
+        pageInfo1.setEndRow( pageInfo.getEndRow() );
+        pageInfo1.setPages( pageInfo.getPages() );
+        pageInfo1.setTotal( pageInfo.getTotal() );
+        pageInfo1.setStartRow( pageInfo.getStartRow() );
+        pageInfo1.setPageSize( pageInfo.getPageSize() );
+        pageInfo1.setNavigatePages( pageInfo.getNavigatePages() );
+
+        return pageInfo1;
+
+    }
+
+    @Override
+    public List<OrderDTO> toOrderDTOList(List<OrderBo> orderBoList) {
+        if ( orderBoList == null ) {
+            return null;
+        }
+
+        List<OrderDTO> list = new ArrayList<OrderDTO>( orderBoList.size() );
+        for ( OrderBo orderBo : orderBoList) {
+            list.add( toOrderDTO(orderBo) );
+        }
+
+        return list;
+    }
+
+    protected OrderDTO toOrderDTO(OrderBo orderBo) {
+        if ( orderBo == null ) {
+            return null;
+        }
+
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderId(orderBo.getOrderId());
+        orderDTO.setBuyerId(orderBo.getBuyerId());
+        orderDTO.setSellerId(orderBo.getSellerId());
+        orderDTO.setTotalPrice(orderBo.getTotalPrice());
+        orderDTO.setSkuId(orderBo.getSkuId());
+        orderDTO.setOrderStatus(orderBo.getOrderStatus());
+        orderDTO.setQuantity(orderBo.getQuantity());
+        orderDTO.setPrice(orderBo.getPrice());
+
+        return orderDTO;
     }
 
     @Override

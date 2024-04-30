@@ -17,17 +17,25 @@
     <sql id="Base_Column_List">
         uid,order_id,buyer_id,seller_id,sku_id,order_status,total_price,remark,create_time
     </sql>
+    <sql id="order_Column_List">
+        a.order_id,a.buyer_id,a.seller_id,a.sku_id,a.order_status,a.total_price,
+        b.product_id ,b.quantity ,b.price
+    </sql>
 
 
-    <select id="queryOrderBySku" resultType="com.etc.order.repository.entity.MasterOrder">
+    <select id="queryOrderBySku" resultType="com.etc.order.repository.vo.OrderVo">
         select
-        <include refid="Base_Column_List"/>
-        from master_order
+        <include refid="order_Column_List"/>
+        from master_order a,order_item b
         <where>
+            a.order_id =b.order_id
             <if test="skuId !=null and skuId != '' ">
-                sku_id=#{skuId}
+                and a.sku_id=#{skuId}
             </if>
-        </where>>
+            <if test="buyerId !=null and buyerId != '' ">
+                and a.buyer_id=#{skuId}
+            </if>
+        </where>
     </select>
 
     <insert id="createOrder" parameterType="com.etc.order.repository.entity.MasterOrder">
