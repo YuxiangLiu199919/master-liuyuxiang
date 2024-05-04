@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-import javax.validation.constraints.NotNull;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadFactory;
@@ -35,7 +34,7 @@ public class CommitExecutor {
                 new ArrayBlockingQueue<>(MAXIMUM_CACHED_AMOUNT),
                 new ThreadFactory() {
                     @Override
-                    public Thread newThread(@NotNull Runnable r) {
+                    public Thread newThread(Runnable r) {
                         return new Thread(r,Constant.SYNC_EXECUTOR);
                     }
                 },

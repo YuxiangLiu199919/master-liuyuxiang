@@ -1,5 +1,11 @@
 #ignore this file
+target/
 .idea/
-*.iml
 .svn/
-
+#class file
+*.class
+*.iml
+.run/
+/log/
+*.run.xml
+rebel.xml

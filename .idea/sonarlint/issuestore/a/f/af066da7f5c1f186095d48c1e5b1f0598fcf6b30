@@ -6,6 +6,6 @@ java:S1488"`Immediately return this expression instead of assigning it to the 
 q
 java:S3252"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".( ÊÜÄúÿÿÿÿ8’åò1
 a
-java:S1128"?Remove this unused import 'cn.hutool.core.collection.ListUtil'.(š™úûÿÿÿÿ8Ë—õæò1
+java:S1128"?Remove this unused import 'cn.hutool.core.collection.ListUtil'.(š™úûÿÿÿÿ8®ÖôŠô1
 T
-java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8Ë—õæò1
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ8²ÖôŠô1

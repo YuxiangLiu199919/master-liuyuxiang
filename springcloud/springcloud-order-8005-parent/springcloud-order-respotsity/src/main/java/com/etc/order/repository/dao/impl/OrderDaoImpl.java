@@ -1,7 +1,6 @@
 package com.etc.order.repository.dao.impl;
 
 import cn.hutool.core.collection.ListUtil;
-import com.alibaba.druid.util.StringUtils;
 import com.etc.order.repository.dao.OrderDao;
 import com.etc.order.repository.entity.MasterOrder;
 import com.etc.order.repository.mapper.OrderMapper;
@@ -9,6 +8,7 @@ import com.etc.order.repository.vo.OrderVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Collections;

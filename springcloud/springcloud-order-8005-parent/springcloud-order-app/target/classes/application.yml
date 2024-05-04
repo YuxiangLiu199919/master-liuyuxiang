@@ -22,6 +22,11 @@ spring:
     url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+
 
   redis:
     #redis数据库索引
